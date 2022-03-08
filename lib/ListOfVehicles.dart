@@ -8,6 +8,7 @@ import 'package:bbeep/AboutPage.dart';
 import 'package:bbeep/Statistics.dart';
 import 'package:bbeep/Calendar.dart';
 import 'package:bbeep/AddNewExpense.dart';
+import 'package:camera/camera.dart';
 
 class ListOfVehicles extends StatefulWidget {
   const ListOfVehicles({Key? key}) : super(key: key);
@@ -37,7 +38,8 @@ class _ListOfVehicles extends State<ListOfVehicles> {
           hp: _newEntry.hp,
           km: _newEntry.km,
           tires: _newEntry.tires,
-          service: _newEntry.service));
+          service: _newEntry.service,
+          pictureFile1: _newEntry.pictureFile1));
 
       setState(() {});
     }
@@ -49,70 +51,145 @@ class _ListOfVehicles extends State<ListOfVehicles> {
         itemCount: _vehicles.length,
         separatorBuilder: (context, index) => const Divider(),
         itemBuilder: (context, index) {
-          return Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 100,
-                  width: 400,
-                  child: ElevatedButton(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(_vehicles[index].name,
-                                style: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 24,
-                                    fontFamily: 'RobotoMono')),
-                            Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(_vehicles[index].brand,
-                                      style: const TextStyle(
-                                          color: Colors.black54,
-                                          fontSize: 18,
-                                          fontFamily: 'RobotoMono')),
-                                  const SizedBox(width: 4),
-                                  Text(_vehicles[index].model,
-                                      style: const TextStyle(
-                                          color: Colors.black54,
-                                          fontSize: 18,
-                                          fontFamily: 'RobotoMono')),
-                                ])
-                          ]),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFFA5A6F6)),
-                      ),
-                      onPressed: () {}),
-                ),
-                const SizedBox(width: 20),
-                SizedBox(
-                  height: 80,
-                  width: 80,
-                  child: ElevatedButton(
-                      child: const Center(
-                          child: Text(
-                        'Add\$',
-                        style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 18,
-                            fontFamily: 'RobotoMono'),
-                      )),
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(const CircleBorder()),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFFA5A6F6)),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const AddNewExpense()));
-                      }),
-                )
-              ]);
+          if (_vehicles[index].pictureFile1 != null) {
+            return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                      height: 80,
+                      width: 80,
+                      child:
+                          Image.network(_vehicles[index].pictureFile1!.path)),
+                  const SizedBox(width: 20),
+                  SizedBox(
+                    height: 100,
+                    width: 400,
+                    child: ElevatedButton(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(_vehicles[index].name,
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 24,
+                                      fontFamily: 'RobotoMono')),
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(_vehicles[index].brand,
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontFamily: 'RobotoMono')),
+                                    const SizedBox(width: 4),
+                                    Text(_vehicles[index].model,
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontFamily: 'RobotoMono')),
+                                  ])
+                            ]),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFA5A6F6)),
+                        ),
+                        onPressed: () {}),
+                  ),
+                  const SizedBox(width: 20),
+                  SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: ElevatedButton(
+                        child: const Center(
+                            child: Text(
+                          'Add\$',
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                              fontFamily: 'RobotoMono'),
+                        )),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFA5A6F6)),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AddNewExpense()));
+                        }),
+                  )
+                ]);
+          } else {
+            return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 100,
+                    width: 400,
+                    child: ElevatedButton(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(_vehicles[index].name,
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 24,
+                                      fontFamily: 'RobotoMono')),
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(_vehicles[index].brand,
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontFamily: 'RobotoMono')),
+                                    const SizedBox(width: 4),
+                                    Text(_vehicles[index].model,
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontFamily: 'RobotoMono')),
+                                  ])
+                            ]),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFA5A6F6)),
+                        ),
+                        onPressed: () {}),
+                  ),
+                  const SizedBox(width: 20),
+                  SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: ElevatedButton(
+                        child: const Center(
+                            child: Text(
+                          'Add\$',
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                              fontFamily: 'RobotoMono'),
+                        )),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFA5A6F6)),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AddNewExpense()));
+                        }),
+                  )
+                ]);
+          }
         });
   }
 
@@ -219,6 +296,7 @@ class Vehicle {
   String? km;
   String? tires;
   String? service;
+  XFile? pictureFile1;
 
   Vehicle(
       {required this.name,
@@ -229,5 +307,6 @@ class Vehicle {
       this.km,
       this.service,
       this.tires,
-      this.yp});
+      this.yp,
+      this.pictureFile1});
 }

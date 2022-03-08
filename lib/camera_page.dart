@@ -80,12 +80,14 @@ class _CameraPageState extends State<CameraPage> {
           ),
 
         Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Row(children: <Widget>[
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context, pictureFile);
                   },
                   child: const Text('Keep it',
                       style: TextStyle(
@@ -100,7 +102,7 @@ class _CameraPageState extends State<CameraPage> {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context, pictureFile);
                   },
                   child: const Text('Cancel',
                       style: TextStyle(
@@ -113,7 +115,7 @@ class _CameraPageState extends State<CameraPage> {
                   ),
                 ),
               ]),
-            ))
+        )
         //Android/iOS
         // Image.file(File(pictureFile!.path)))
       ],

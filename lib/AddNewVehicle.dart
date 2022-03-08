@@ -15,6 +15,7 @@ class AddNewVehicle extends StatefulWidget {
 
 class _AddNewVehicle extends State<AddNewVehicle> {
   // ignore: non_constant_identifier_names
+  XFile? _pictureFile;
 
   Color BackgroundColor = const Color(0xFFEAEAEA);
   final _formKey = GlobalKey<FormState>();
@@ -92,7 +93,7 @@ class _AddNewVehicle extends State<AddNewVehicle> {
                                   const Color(0xFFA5A6F6)),
                             ),
                             onPressed: () async {
-                              await availableCameras()
+                              _pictureFile = await availableCameras()
                                   .then((value) => Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -219,7 +220,8 @@ class _AddNewVehicle extends State<AddNewVehicle> {
                               hp: _hpController.text,
                               km: _kmController.text,
                               tires: _tiresController.text,
-                              service: _serviceController.text);
+                              service: _serviceController.text,
+                              pictureFile1: _pictureFile);
 
                           Navigator.pop(context, entry);
                         }
@@ -240,6 +242,7 @@ class Entry {
   String? km;
   String? tires;
   String? service;
+  XFile? pictureFile1;
 
   Entry(
       {required this.name,
@@ -250,5 +253,6 @@ class Entry {
       this.km,
       this.service,
       this.tires,
-      this.yp});
+      this.yp,
+      this.pictureFile1});
 }

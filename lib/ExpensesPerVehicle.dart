@@ -3,29 +3,39 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:bbeep/gas.dart';
 
+// ignore: must_be_immutable
 class ExpensesPerVehicle extends StatefulWidget {
-  const ExpensesPerVehicle({Key? key}) : super(key: key);
+  String title;
+  String date;
+  String cost;
+
+  ExpensesPerVehicle(
+      {Key? key, required this.title, required this.date, required this.cost})
+      : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ExpensesPerVehicle();
+  State<StatefulWidget> createState() => _ExpensesPerVehicle(title, date, cost);
 }
 
 class _ExpensesPerVehicle extends State<ExpensesPerVehicle> {
   // ignore: non_constant_identifier_names
   Color BackgroundColor = const Color(0xFFEAEAEA);
+  String title;
+  String date;
+  String cost;
+  _ExpensesPerVehicle(this.title, this.date, this.cost);
 
-  /* Widget _buildGasList() {
+  Widget _buildList() {
     return SingleChildScrollView(
         child: ListView.separated(
             padding: const EdgeInsets.all(2.0),
-            itemCount: _gasList.length,
+            itemCount: 3,
             separatorBuilder: (context, index) => const Divider(),
             itemBuilder: (context, index) {
-              return ListTile(title: Text(_gasList[index].date));
+              return ListTile(title: Text(title));
             }));
-  } */
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +44,7 @@ class _ExpensesPerVehicle extends State<ExpensesPerVehicle> {
             shadowColor: const Color(0x00FFFFFF),
             iconTheme: const IconThemeData(color: Colors.black54),
             backgroundColor: BackgroundColor,
-            elevation: 0));
+            elevation: 0),
+        body: _buildList());
   }
 }
-
-/*class Gas {
-  String date;
-  String cost;
-  String? litrePrice;
-  String? branch;
-
-  Gas({required this.date, required this.cost, this.litrePrice, this.branch});
-} */

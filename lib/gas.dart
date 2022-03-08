@@ -150,6 +150,12 @@ class _AddGas extends State<Gas> {
                                 cost: _costController.text,
                                 litrePrice: _litrePriceController.text,
                                 branch: _branchController.text);
+
+                            /*Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ExpensesPerVehicle(
+                                    title: 'Gas',
+                                    date: entry.date,
+                                    cost: entry.cost)));*/
                           }
                         }),
                   )
