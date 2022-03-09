@@ -66,169 +66,173 @@ class _AddNewVehicle extends State<AddNewVehicle> {
           ],
           shadowColor: const Color(0x00FFFFFF),
         ),
-        body: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ElevatedButton(
-                            child: IconButton(
-                                icon: const Icon(
-                                  Icons.camera_alt,
-                                  color: Colors.black54,
+        body: SingleChildScrollView(
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: ElevatedButton(
+                                child: IconButton(
+                                    icon: const Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.black54,
+                                    ),
+                                    tooltip: 'Add Photo',
+                                    onPressed: () {}),
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(
+                                      const CircleBorder()),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          const Color(0xFFA5A6F6)),
                                 ),
-                                tooltip: 'Add Photo',
-                                onPressed: () {}),
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                  const CircleBorder()),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFFA5A6F6)),
-                            ),
-                            onPressed: () async {
-                              _pictureFile = await availableCameras()
-                                  .then((value) => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => CameraPage(
-                                            cameras: value,
-                                          ),
-                                        ),
-                                      ));
-                            }),
-                      )
-                    ]),
-                const SizedBox(height: 5),
-                TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Name of Vehicle',
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xB5A5A6F6))),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true,
+                                onPressed: () async {
+                                  _pictureFile = await availableCameras()
+                                      .then((value) => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => CameraPage(
+                                                cameras: value,
+                                              ),
+                                            ),
+                                          ));
+                                }),
+                          )
+                        ]),
+                    const SizedBox(height: 5),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Name of Vehicle',
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xB5A5A6F6))),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true,
+                        ),
+                        controller: _nameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Name field cannot be empty!';
+                          }
+                          return null;
+                        }),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Brand',
+                            border:
+                                OutlineInputBorder(borderSide: BorderSide()),
+                            fillColor: Color(0x12A5A6F6),
+                            filled: true),
+                        controller: _brandController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Brand field cannot be empty!';
+                          }
+                          return null;
+                        }),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Model',
+                            border:
+                                OutlineInputBorder(borderSide: BorderSide()),
+                            fillColor: Color(0x12A5A6F6),
+                            filled: true),
+                        controller: _modelController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Model field cannot be empty!';
+                          }
+                          return null;
+                        }),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Year Of Purchase',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _ypController,
                     ),
-                    controller: _nameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Name field cannot be empty!';
-                      }
-                      return null;
-                    }),
-                TextFormField(
-                    decoration: const InputDecoration(
-                        hintText: 'Brand',
-                        border: OutlineInputBorder(borderSide: BorderSide()),
-                        fillColor: Color(0x12A5A6F6),
-                        filled: true),
-                    controller: _brandController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Brand field cannot be empty!';
-                      }
-                      return null;
-                    }),
-                TextFormField(
-                    decoration: const InputDecoration(
-                        hintText: 'Model',
-                        border: OutlineInputBorder(borderSide: BorderSide()),
-                        fillColor: Color(0x12A5A6F6),
-                        filled: true),
-                    controller: _modelController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Model field cannot be empty!';
-                      }
-                      return null;
-                    }),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'Year Of Purchase',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _ypController,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'cc',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _ccController,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'Hp',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _hpController,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'Total Km',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _kmController,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'Last Change of Tires',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _tiresController,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: 'Last Service',
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                      fillColor: Color(0x12A5A6F6),
-                      filled: true),
-                  controller: _serviceController,
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: 100.0,
-                  height: 30.0,
-                  child: ElevatedButton(
-                      child: const Text('Submit',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'RobotoMono')),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black54),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final entry = Entry(
-                              name: _nameController.text,
-                              brand: _brandController.text,
-                              model: _modelController.text,
-                              yp: _ypController.text,
-                              cc: _ccController.text,
-                              hp: _hpController.text,
-                              km: _kmController.text,
-                              tires: _tiresController.text,
-                              service: _serviceController.text,
-                              pictureFile1: _pictureFile);
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'cc',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _ccController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Hp',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _hpController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Total Km',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _kmController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Last Change of Tires',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _tiresController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Last Service',
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          fillColor: Color(0x12A5A6F6),
+                          filled: true),
+                      controller: _serviceController,
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: 100.0,
+                      height: 30.0,
+                      child: ElevatedButton(
+                          child: const Text('Submit',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'RobotoMono')),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.black54),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              final entry = Entry(
+                                  name: _nameController.text,
+                                  brand: _brandController.text,
+                                  model: _modelController.text,
+                                  yp: _ypController.text,
+                                  cc: _ccController.text,
+                                  hp: _hpController.text,
+                                  km: _kmController.text,
+                                  tires: _tiresController.text,
+                                  service: _serviceController.text,
+                                  pictureFile1: _pictureFile);
 
-                          Navigator.pop(context, entry);
-                        }
-                      }),
-                )
-              ],
-            )));
+                              Navigator.pop(context, entry);
+                            }
+                          }),
+                    )
+                  ],
+                ))));
   }
 }
 

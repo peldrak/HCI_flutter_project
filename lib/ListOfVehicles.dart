@@ -57,14 +57,14 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                      height: 80,
-                      width: 80,
+                      height: 40,
+                      width: 40,
                       child:
                           Image.network(_vehicles[index].pictureFile1!.path)),
                   const SizedBox(width: 20),
                   SizedBox(
-                    height: 100,
-                    width: 400,
+                    height: 120,
+                    width: 200,
                     child: ElevatedButton(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,22 +75,17 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                                       color: Colors.black87,
                                       fontSize: 24,
                                       fontFamily: 'RobotoMono')),
-                              Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(_vehicles[index].brand,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 18,
-                                            fontFamily: 'RobotoMono')),
-                                    const SizedBox(width: 4),
-                                    Text(_vehicles[index].model,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 18,
-                                            fontFamily: 'RobotoMono')),
-                                  ])
+                              Text(_vehicles[index].brand,
+                                  style: const TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                      fontFamily: 'RobotoMono')),
+                              const SizedBox(width: 4),
+                              Text(_vehicles[index].model,
+                                  style: const TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                      fontFamily: 'RobotoMono')),
                             ]),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -98,7 +93,7 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                         ),
                         onPressed: () {}),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   SizedBox(
                     height: 80,
                     width: 80,
@@ -129,8 +124,8 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 100,
-                    width: 400,
+                    height: 120,
+                    width: 200,
                     child: ElevatedButton(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,22 +136,17 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                                       color: Colors.black87,
                                       fontSize: 24,
                                       fontFamily: 'RobotoMono')),
-                              Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(_vehicles[index].brand,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 18,
-                                            fontFamily: 'RobotoMono')),
-                                    const SizedBox(width: 4),
-                                    Text(_vehicles[index].model,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 18,
-                                            fontFamily: 'RobotoMono')),
-                                  ])
+                              Text(_vehicles[index].brand,
+                                  style: const TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                      fontFamily: 'RobotoMono')),
+                              const SizedBox(width: 4),
+                              Text(_vehicles[index].model,
+                                  style: const TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                      fontFamily: 'RobotoMono')),
                             ]),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -164,7 +154,7 @@ class _ListOfVehicles extends State<ListOfVehicles> {
                         ),
                         onPressed: () {}),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   SizedBox(
                     height: 80,
                     width: 80,
